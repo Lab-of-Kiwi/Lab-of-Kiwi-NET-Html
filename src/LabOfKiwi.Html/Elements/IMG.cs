@@ -1,0 +1,85 @@
+using LabOfKiwi.Html.Attributes;
+using LabOfKiwi.Html.Attributes.Parsers;
+using System;
+using System.Collections.Generic;
+using System.Xml;
+
+namespace LabOfKiwi.Html.Elements;
+
+public sealed class IMG : HtmlVoidElement
+{
+    internal IMG(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
+    {
+    }
+
+    public string? Alt
+    {
+        get => Get("alt");
+        set => Set("alt", value);
+    }
+
+    public Crossorigin? Crossorigin
+    {
+        get => GetStruct<DashedEnumParser<Crossorigin>, Crossorigin>("crossorigin");
+        set => SetStruct<DashedEnumParser<Crossorigin>, Crossorigin>("crossorigin", value);
+    }
+
+    public Decoding? Decoding
+    {
+        get => GetEnum<Decoding>("decoding");
+        set => SetEnum("decoding", value);
+    }
+
+    public long? Height
+    {
+        get => GetStruct<LongParser.NonNegative, long>("height");
+        set => SetStruct<LongParser.NonNegative, long>("height", value);
+    }
+
+    public bool IsMap
+    {
+        get => GetBoolean("ismap");
+        set => SetBoolean("ismap", value);
+    }
+
+    public Loading? Loading
+    {
+        get => GetEnum<Loading>("loading");
+        set => SetEnum("loading", value);
+    }
+
+    public ReferrerPolicy? ReferrerPolicy
+    {
+        get => GetStruct<DashedEnumParser<ReferrerPolicy>, ReferrerPolicy>("referrerpolicy");
+        set => SetStruct<DashedEnumParser<ReferrerPolicy>, ReferrerPolicy>("referrerpolicy", value);
+    }
+
+    // TODO
+    public string? Sizes
+    {
+        get => Get("sizes");
+        set => Set("sizes", value);
+    }
+
+    public Uri? Source
+    {
+        get => GetObject<UrlParser, Uri>("src");
+        set => SetObject<UrlParser, Uri>("src", value);
+    }
+
+    // TODO
+    public IList<string> SourceSet => GetList<StringParser, string>("srcset", delimiter: ",");
+
+    // TODO
+    public string? UseMap
+    {
+        get => Get("usemap");
+        set => Set("usemap", value);
+    }
+
+    public long? Width
+    {
+        get => GetStruct<LongParser.NonNegative, long>("width");
+        set => SetStruct<LongParser.NonNegative, long>("width", value);
+    }
+}

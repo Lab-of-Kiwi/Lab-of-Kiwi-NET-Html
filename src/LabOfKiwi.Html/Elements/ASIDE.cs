@@ -1,0 +1,10 @@
+using System.Xml;
+
+namespace LabOfKiwi.Html.Elements;
+
+public sealed class ASIDE : HtmlContainerElement
+{
+    internal ASIDE(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
+    {
+    }
+}
