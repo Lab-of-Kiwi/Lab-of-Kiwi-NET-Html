@@ -1,18 +1,13 @@
 ﻿using LabOfKiwi.Collections;
+using LabOfKiwi.Text;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public interface IAttributeParser<T> where T : notnull
+public interface IAttributeParser<T> : IParser<T> where T : notnull
 {
-    bool IsValid(T input);
-
-    bool TryParse(string input, [MaybeNullWhen(false)] out T output);
-
-    bool TryToString(T input, [MaybeNullWhen(false)] out string output);
-
     IList<T> AsList(HtmlAgilityPack.HtmlNode element, string attributeName, string delimiter)
     {
         if (element == null)
@@ -89,17 +84,8 @@ public interface IAttributeParser<T> where T : notnull
     }
 }
 
-public interface IAttributeParser<T, TParent> : IAttributeParser<T> where T : notnull where TParent : struct, IAttributeParser<T>
+public interface IAttributeParser<T, TParent> : IAttributeParser<T>, IParser<T, TParent>
+    where T : notnull
+    where TParent :  IAttributeParser<T>, new()
 {
-    private static readonly TParent Parent = default;
-
-    bool IAttributeParser<T>.TryParse(string input, [MaybeNullWhen(false)] out T output)
-    {
-        return Parent.TryParse(input, out output);
-    }
-
-    bool IAttributeParser<T>.TryToString(T input, [MaybeNullWhen(false)] out string output)
-    {
-        return Parent.TryToString(input, out output);
-    }
 }
