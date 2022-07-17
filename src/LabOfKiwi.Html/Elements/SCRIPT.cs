@@ -6,7 +6,7 @@ using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class SCRIPT : HtmlContainerElement
+public sealed class SCRIPT : HtmlElement
 {
     internal SCRIPT(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
     {
@@ -16,6 +16,30 @@ public sealed class SCRIPT : HtmlContainerElement
     {
         get => !GetBoolean("nomodule");
         set => SetBoolean("nomodule", !value);
+    }
+
+    public string? Content
+    {
+        get
+        {
+            if (!CoreNode.HasChildNodes)
+            {
+                return null;
+            }
+
+            return CoreNode.ChildNodes[0].InnerText;
+        }
+
+        set
+        {
+            CoreNode.ChildNodes.Clear();
+
+            if (value != null)
+            {
+                var textNode = CoreNode.OwnerDocument.CreateTextNode(value);
+                CoreNode.AppendChild(textNode);
+            }
+        }
     }
 
     public bool IsAsync
@@ -29,6 +53,8 @@ public sealed class SCRIPT : HtmlContainerElement
         get => GetBoolean("defer");
         set => SetBoolean("defer", value);
     }
+
+    public sealed override bool IsVoidElement => false;
 
     public ISet<string> Blocking => GetSet<TokenParser, string>("blocking", delimiter: " ");
 
