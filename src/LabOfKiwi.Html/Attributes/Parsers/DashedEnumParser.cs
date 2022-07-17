@@ -6,6 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
+[Obsolete("Will be removed due to too much 'magic' going on here.")]
 public readonly struct DashedEnumParser<T> : IAttributeParser<T> where T : struct, Enum
 {
     private static readonly ConcurrentDictionary<Type, object> CachedValues = new();
