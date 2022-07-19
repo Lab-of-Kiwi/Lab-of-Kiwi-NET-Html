@@ -155,7 +155,7 @@ public partial class HtmlElement
 
     public bool? Translate
     {
-        get => GetStruct<YesNoParser, bool>("spellcheck");
-        set => SetStruct<YesNoParser, bool>("spellcheck", value);
+        get => GetStruct<YesNoParser, bool>("translate");
+        set => SetStruct<YesNoParser, bool>("translate", value);
     }
 }
