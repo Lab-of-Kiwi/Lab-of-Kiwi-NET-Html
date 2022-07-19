@@ -102,10 +102,101 @@ public abstract partial class HtmlElement
     {
         if (value == null)
         {
+            CoreNode.Attributes.Remove(attributeName);
+        }
+        else
+        {
+            CoreNode.SetAttributeValue(attributeName, HttpUtility.HtmlAttributeEncode(value));
+        }
+    }
 
+    internal void Set<TParser, TValue>(string attributeName, string? value)
+        where TParser : struct, IAttributeParser<TValue>
+        where TValue : notnull
+    {
+        if (value != null)
+        {
+            TParser parser = new();
+
+            if (!parser.TryParse(value, out TValue? result) || !parser.IsValid(result))
+            {
+                HtmlHelper.ThrowInvalidAttributeValueException(attributeName, value);
+            }
         }
 
-        CoreNode.SetAttributeValue(attributeName, value != null ? HttpUtility.HtmlAttributeEncode(value) : null);
+        Set(attributeName, value);
+    }
+
+    internal void SetAsList<TParser, TValue>(string attributeName, string? value, string delimiter)
+        where TParser : struct, IAttributeParser<TValue>
+        where TValue : notnull
+    {
+        if (value != null)
+        {
+            string[] rawValues = value.Split(delimiter, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+            if (rawValues.Length > 0)
+            {
+                TParser parser = new();
+                List<string> newValues = new(rawValues.Length);
+
+                foreach (string rawValue in rawValues)
+                {
+                    if (!parser.TryParse(rawValue, out TValue? result) || !parser.IsValid(result))
+                    {
+                        HtmlHelper.ThrowInvalidAttributeValueException(attributeName, value);
+                    }
+
+                    newValues.Add(HttpUtility.HtmlAttributeEncode(rawValue));
+                }
+
+                value = string.Join(delimiter, newValues);
+            }
+            else
+            {
+                value = null;
+            }
+        }
+
+        Set(attributeName, value);
+    }
+
+    internal void SetAsSet<TParser, TValue>(string attributeName, string? value, string delimiter)
+        where TParser : struct, IAttributeParser<TValue>
+        where TValue : notnull
+    {
+        if (value != null)
+        {
+            string[] rawValues = value.Split(delimiter, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+            if (rawValues.Length > 0)
+            {
+                HashSet<TValue> valueSet = new(rawValues.Length);
+                List<string> newValues = new(rawValues.Length);
+                TParser parser = new();
+
+                foreach (string rawValue in rawValues)
+                {
+                    if (!parser.TryParse(rawValue, out TValue? result) || !parser.IsValid(result))
+                    {
+                        HtmlHelper.ThrowInvalidAttributeValueException(attributeName, value);
+                    }
+
+                    if (valueSet.Add(result))
+                    {
+                        newValues.Add(HttpUtility.HtmlAttributeEncode(rawValue));
+                    }
+                }
+
+                value = string.Join(delimiter, newValues);
+            }
+            else
+            {
+                value = null;
+            }
+        }
+
+        Set(attributeName, value);
     }
 
     internal void SetBoolean(string attributeName, bool value)
