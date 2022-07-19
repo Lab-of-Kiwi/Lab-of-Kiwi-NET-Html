@@ -8,8 +8,8 @@ public class AUDIO : HtmlContainerElement
 {
     public Crossorigin? Crossorigin
     {
-        get => GetStruct<DashedEnumParser<Crossorigin>, Crossorigin>("crossorigin");
-        set => SetStruct<DashedEnumParser<Crossorigin>, Crossorigin>("crossorigin", value);
+        get => GetStruct<CrossoriginParser, Crossorigin>("crossorigin");
+        set => SetStruct<CrossoriginParser, Crossorigin>("crossorigin", value);
     }
 
     public bool IsAutoPlay

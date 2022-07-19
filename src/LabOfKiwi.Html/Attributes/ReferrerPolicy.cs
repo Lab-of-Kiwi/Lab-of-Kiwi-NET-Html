@@ -2,6 +2,7 @@
 
 public enum ReferrerPolicy
 {
+    None,
     NoReferrer,
     NoReferrerWhenDowngrade,
     SameOrigin,

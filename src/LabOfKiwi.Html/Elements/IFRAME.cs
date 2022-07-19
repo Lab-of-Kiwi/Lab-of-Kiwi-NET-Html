@@ -40,8 +40,8 @@ public class IFRAME : HtmlVoidElement
 
     public ReferrerPolicy? ReferrerPolicy
     {
-        get => GetStruct<DashedEnumParser<ReferrerPolicy>, ReferrerPolicy>("referrerpolicy");
-        set => SetStruct<DashedEnumParser<ReferrerPolicy>, ReferrerPolicy>("referrerpolicy", value);
+        get => GetStruct<ReferrerPolicyParser, ReferrerPolicy>("referrerpolicy");
+        set => SetStruct<ReferrerPolicyParser, ReferrerPolicy>("referrerpolicy", value);
     }
 
     public Sandbox Sandbox

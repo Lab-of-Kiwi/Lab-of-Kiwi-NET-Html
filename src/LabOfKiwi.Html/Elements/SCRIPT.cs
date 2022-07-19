@@ -55,8 +55,8 @@ public class SCRIPT : HtmlElement
 
     public Crossorigin? Crossorigin
     {
-        get => GetStruct<DashedEnumParser<Crossorigin>, Crossorigin>("crossorigin");
-        set => SetStruct<DashedEnumParser<Crossorigin>, Crossorigin>("crossorigin", value);
+        get => GetStruct<CrossoriginParser, Crossorigin>("crossorigin");
+        set => SetStruct<CrossoriginParser, Crossorigin>("crossorigin", value);
     }
 
     public string? Integrity
@@ -67,8 +67,8 @@ public class SCRIPT : HtmlElement
 
     public ReferrerPolicy? ReferrerPolicy
     {
-        get => GetStruct<DashedEnumParser<ReferrerPolicy>, ReferrerPolicy>("referrerpolicy");
-        set => SetStruct<DashedEnumParser<ReferrerPolicy>, ReferrerPolicy>("referrerpolicy", value);
+        get => GetStruct<ReferrerPolicyParser, ReferrerPolicy>("referrerpolicy");
+        set => SetStruct<ReferrerPolicyParser, ReferrerPolicy>("referrerpolicy", value);
     }
 
     public Uri? Source

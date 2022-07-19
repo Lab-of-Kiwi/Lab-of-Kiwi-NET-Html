@@ -30,8 +30,8 @@ public class A : HtmlContainerElement
 
     public ReferrerPolicy? ReferrerPolicy
     {
-        get => GetStruct<DashedEnumParser<ReferrerPolicy>, ReferrerPolicy>("referrerpolicy");
-        set => SetStruct<DashedEnumParser<ReferrerPolicy>, ReferrerPolicy>("referrerpolicy", value);
+        get => GetStruct<ReferrerPolicyParser, ReferrerPolicy>("referrerpolicy");
+        set => SetStruct<ReferrerPolicyParser, ReferrerPolicy>("referrerpolicy", value);
     }
 
     public ISet<string> Relationships => GetSet<TokenParser, string>("rel", delimiter: " ");
