@@ -1,7 +1,8 @@
-﻿using System;
+﻿using LabOfKiwi.Html.Attributes.Parsers;
+using System;
 using System.Collections.Generic;
 
-namespace LabOfKiwi.Html.Attributes.Parsers;
+namespace LabOfKiwi.Html.Attributes;
 
 public readonly struct ItemAttributes
 {
