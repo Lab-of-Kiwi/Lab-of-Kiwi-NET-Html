@@ -3,16 +3,11 @@ using LabOfKiwi.Html.Attributes.Parsers;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class LINK : HtmlVoidElement
+public class LINK : HtmlVoidElement
 {
-    internal LINK(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     // TODO
     public string? As
     {

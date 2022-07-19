@@ -1,14 +1,9 @@
 using LabOfKiwi.Html.Attributes.Parsers;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class FIELDSET : HtmlContainerElement
+public class FIELDSET : HtmlContainerElement
 {
-    internal FIELDSET(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public string? Form
     {
         get => GetObject<TokenParser, string>("form");

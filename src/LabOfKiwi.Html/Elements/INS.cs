@@ -1,15 +1,10 @@
 using LabOfKiwi.Html.Attributes.Parsers;
 using System;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class INS : HtmlContainerElement
+public class INS : HtmlContainerElement
 {
-    internal INS(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public Uri? Cite
     {
         get => GetObject<UrlParser, Uri>("cite");

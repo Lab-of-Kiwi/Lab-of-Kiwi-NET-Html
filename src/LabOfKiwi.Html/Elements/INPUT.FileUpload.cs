@@ -1,16 +1,11 @@
 ﻿using LabOfKiwi.Html.Attributes.Parsers;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
 public partial class INPUT
 {
-    public sealed class FileUpload : INPUT
+    public class FileUpload : INPUT
     {
-        internal FileUpload(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-        {
-        }
-
         public string? Accept
         {
             get => GetObject<AcceptParser, string>("accept");

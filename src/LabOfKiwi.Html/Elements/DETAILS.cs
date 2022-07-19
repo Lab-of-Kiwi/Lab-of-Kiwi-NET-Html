@@ -1,13 +1,7 @@
-using System.Xml;
-
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class DETAILS : HtmlContainerElement
+public class DETAILS : HtmlContainerElement
 {
-    internal DETAILS(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public bool IsOpen
     {
         get => GetBoolean("open");

@@ -2,7 +2,7 @@
 
 public abstract class HtmlVoidElement : HtmlElement
 {
-    internal HtmlVoidElement(HtmlAgilityPack.HtmlNode coreElement) : base(coreElement)
+    internal HtmlVoidElement()
     {
     }
 

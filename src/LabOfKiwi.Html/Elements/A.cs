@@ -3,16 +3,11 @@ using LabOfKiwi.Html.Attributes.Parsers;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class A : HtmlContainerElement
+public class A : HtmlContainerElement
 {
-    internal A(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public string? Download
     {
         get => Get("download");

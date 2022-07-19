@@ -1,16 +1,11 @@
 ﻿using LabOfKiwi.Html.Attributes.Parsers;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
 public partial class INPUT
 {
-    public sealed class Search : INPUT
+    public class Search : INPUT
     {
-        internal Search(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-        {
-        }
-
         public string? AutoComplete
         {
             get => Get("autocomplete");

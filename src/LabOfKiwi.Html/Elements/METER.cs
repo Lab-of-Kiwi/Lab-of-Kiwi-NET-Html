@@ -1,14 +1,9 @@
 using LabOfKiwi.Html.Attributes.Parsers;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class METER : HtmlContainerElement
+public class METER : HtmlContainerElement
 {
-    internal METER(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public float? High
     {
         get => GetStruct<FloatParser, float>("high");

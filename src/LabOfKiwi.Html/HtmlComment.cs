@@ -4,8 +4,9 @@ namespace LabOfKiwi.Html;
 
 public sealed class HtmlComment : HtmlNode
 {
-    internal HtmlComment(HtmlAgilityPack.HtmlCommentNode coreComment) : base(coreComment)
+    internal HtmlComment(HtmlAgilityPack.HtmlCommentNode coreComment) : base()
     {
+        base.CoreNode = coreComment;
     }
 
     public override string NodeName => CoreNode.Name;

@@ -1,15 +1,10 @@
 using LabOfKiwi.Html.Attributes.Parsers;
 using System.Collections.Generic;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class TD : HtmlContainerElement
+public class TD : HtmlContainerElement
 {
-    internal TD(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public long? Colspan
     {
         get => GetStruct<LongParser.Positive, long>("colspan");

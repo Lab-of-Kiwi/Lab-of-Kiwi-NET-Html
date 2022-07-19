@@ -2,16 +2,11 @@ using LabOfKiwi.Html.Attributes;
 using LabOfKiwi.Html.Attributes.Parsers;
 using System;
 using System.Globalization;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class TRACK : HtmlVoidElement
+public class TRACK : HtmlVoidElement
 {
-    internal TRACK(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public bool IsDefault
     {
         get => GetBoolean("default");

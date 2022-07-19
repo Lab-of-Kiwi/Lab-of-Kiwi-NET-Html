@@ -1,16 +1,11 @@
 using LabOfKiwi.Html.Attributes.Parsers;
 using System;
 using System.Collections.Generic;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class SOURCE : HtmlVoidElement
+public class SOURCE : HtmlVoidElement
 {
-    internal SOURCE(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public long? Height
     {
         get => GetStruct<LongParser.NonNegative, long>("height");

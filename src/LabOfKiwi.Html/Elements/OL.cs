@@ -1,15 +1,10 @@
 using LabOfKiwi.Html.Attributes;
 using LabOfKiwi.Html.Attributes.Parsers;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class OL : HtmlContainerElement
+public class OL : HtmlContainerElement
 {
-    internal OL(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public bool IsReversed
     {
         get => GetBoolean("reversed");

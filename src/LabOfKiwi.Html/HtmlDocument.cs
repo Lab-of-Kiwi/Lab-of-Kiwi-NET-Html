@@ -26,8 +26,9 @@ public sealed partial class HtmlDocument : HtmlNode
         }
     }
 
-    internal HtmlDocument(HtmlAgilityPack.HtmlDocument coreDocument) : base(coreDocument.DocumentNode)
+    internal HtmlDocument(HtmlAgilityPack.HtmlDocument coreDocument)
     {
+        CoreNode = coreDocument.DocumentNode;
         CoreDocument = coreDocument;
     }
 

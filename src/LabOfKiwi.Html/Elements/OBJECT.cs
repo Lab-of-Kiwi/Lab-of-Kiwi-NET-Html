@@ -1,15 +1,10 @@
 using LabOfKiwi.Html.Attributes.Parsers;
 using System;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class OBJECT : HtmlContainerElement
+public class OBJECT : HtmlContainerElement
 {
-    internal OBJECT(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public Uri? Data
     {
         get => GetObject<UrlParser, Uri>("data");

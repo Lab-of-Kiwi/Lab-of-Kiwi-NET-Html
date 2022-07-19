@@ -1,16 +1,11 @@
 using LabOfKiwi.Html.Attributes;
 using LabOfKiwi.Html.Attributes.Parsers;
 using System;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class IFRAME : HtmlVoidElement
+public class IFRAME : HtmlVoidElement
 {
-    internal IFRAME(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     // TODO
     public string? Allow
     {

@@ -1,16 +1,11 @@
 using LabOfKiwi.Html.Attributes;
 using LabOfKiwi.Html.Attributes.Parsers;
 using System.Collections.Generic;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class TH : HtmlContainerElement
+public class TH : HtmlContainerElement
 {
-    internal TH(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public string? Abbr
     {
         get => Get("abbr");

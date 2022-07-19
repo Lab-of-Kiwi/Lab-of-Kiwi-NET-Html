@@ -1,16 +1,11 @@
 using LabOfKiwi.Html.Attributes;
 using LabOfKiwi.Html.Attributes.Parsers;
 using System.Text;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class META : HtmlVoidElement
+public class META : HtmlVoidElement
 {
-    internal META(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public Encoding? Charset
     {
         get => GetObject<CharsetParser, Encoding>("charset");

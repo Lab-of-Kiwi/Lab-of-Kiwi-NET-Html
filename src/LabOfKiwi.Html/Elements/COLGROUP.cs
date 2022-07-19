@@ -1,14 +1,9 @@
 using LabOfKiwi.Html.Attributes.Parsers;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class COLGROUP : HtmlContainerElement
+public class COLGROUP : HtmlContainerElement
 {
-    internal COLGROUP(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public long? Span
     {
         get => GetStruct<LongParser.Positive, long>("span");

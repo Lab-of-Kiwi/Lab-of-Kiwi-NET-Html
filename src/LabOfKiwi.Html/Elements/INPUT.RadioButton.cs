@@ -1,15 +1,9 @@
-﻿using System.Xml;
-
-namespace LabOfKiwi.Html.Elements;
+﻿namespace LabOfKiwi.Html.Elements;
 
 public partial class INPUT
 {
-    public sealed class RadioButton : INPUT
+    public class RadioButton : INPUT
     {
-        internal RadioButton(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-        {
-        }
-
         public bool IsChecked
         {
             get => GetBoolean("checked");

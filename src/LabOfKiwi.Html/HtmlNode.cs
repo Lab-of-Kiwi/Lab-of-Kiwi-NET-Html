@@ -6,10 +6,10 @@ namespace LabOfKiwi.Html;
 
 public abstract partial class HtmlNode
 {
-    internal HtmlNode(HtmlAgilityPack.HtmlNode coreNode)
+    private HtmlAgilityPack.HtmlNode _coreNode = null!;
+
+    internal HtmlNode()
     {
-        Debug.Assert(coreNode != null);
-        CoreNode = coreNode;
     }
 
     public IRelatives<HtmlNode> Nodes => new RelativeNodes(this);
@@ -22,7 +22,30 @@ public abstract partial class HtmlNode
 
     public virtual HtmlDocument OwnerDocument => new(CoreNode.OwnerDocument);
 
-    internal HtmlAgilityPack.HtmlNode CoreNode { get; }
+    internal HtmlAgilityPack.HtmlNode CoreNode
+    {
+        get
+        {
+            if (_coreNode == null)
+            {
+                throw new InvalidOperationException("Html Agility Pack node not set.");
+            }
+
+            return _coreNode;
+        }
+
+        set
+        {
+            if (_coreNode != null)
+            {
+                throw new InvalidOperationException("Html Agility Pack node already set.");
+            }
+
+            _coreNode = value;
+        }
+    }
+
+    internal bool IsCoreNodeSet => _coreNode != null;
 
     public sealed override bool Equals(object? obj)
     {

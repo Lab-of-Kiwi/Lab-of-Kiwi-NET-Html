@@ -1,18 +1,13 @@
 ﻿using LabOfKiwi.Html.Attributes;
 using LabOfKiwi.Html.Attributes.Parsers;
 using System;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
 public partial class INPUT
 {
-    public sealed class SubmitButton : INPUT
+    public class SubmitButton : INPUT
     {
-        internal SubmitButton(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-        {
-        }
-
         public bool AllowFormValidation
         {
             get => !GetBoolean("formnovalidate");

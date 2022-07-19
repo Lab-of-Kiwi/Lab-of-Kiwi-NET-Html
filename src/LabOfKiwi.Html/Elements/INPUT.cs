@@ -1,7 +1,6 @@
 using LabOfKiwi.Html.Attributes;
 using LabOfKiwi.Html.Attributes.Parsers;
 using System;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
@@ -9,7 +8,7 @@ public partial class INPUT : HtmlVoidElement
 {
     private readonly InputType _expectedType;
 
-    internal INPUT(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
+    internal INPUT()
     {
         _expectedType = InputTypeUtility.GetInputType(GetType());
 
@@ -66,4 +65,6 @@ public partial class INPUT : HtmlVoidElement
     }
 
     public string? Value => Get("value");
+
+    internal sealed override string ExpectedTagName => "input";
 }

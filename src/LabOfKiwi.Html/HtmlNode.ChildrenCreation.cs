@@ -30,7 +30,7 @@ public abstract partial class HtmlNode
         callback?.Invoke(htmlElement);
     }
 
-    internal void AddElement<TElement>(int index, string? text, Action<TElement>? callback) where TElement : HtmlElement
+    internal void AddElement<TElement>(int index, string? text, Action<TElement>? callback) where TElement : HtmlElement, new()
     {
         TElement htmlElement = CreateElement<TElement>();
         AddNode(index, htmlElement.CoreNode);
@@ -105,16 +105,14 @@ public abstract partial class HtmlNode
     internal HtmlElement CreateElement(string tagName)
     {
         HtmlAgilityPack.HtmlNode node = OwnerDocument.CoreDocument.CreateElement(tagName);
-        HtmlElement htmlElement = ElementRegistry.Instantiate(node);
-        //xmlElement.IsEmpty = htmlElement.IsVoidElement;
-        return htmlElement;
+        return HtmlElement.WrapElement(node);
     }
 
-    internal TElement CreateElement<TElement>() where TElement : HtmlElement
+    internal TElement CreateElement<TElement>() where TElement : HtmlElement, new()
     {
-        string tagName = ElementRegistry.GetTagName<TElement>();
-        HtmlAgilityPack.HtmlNode node = OwnerDocument.CoreDocument.CreateElement(tagName);
-        TElement htmlElement = ElementRegistry.Instantiate<TElement>(node);
+        TElement htmlElement = new();
+        HtmlAgilityPack.HtmlNode node = OwnerDocument.CoreDocument.CreateElement(htmlElement.ExpectedTagName);
+        htmlElement.CoreNode = node;
         //xmlElement.IsEmpty = htmlElement.IsVoidElement;
         return htmlElement;
     }

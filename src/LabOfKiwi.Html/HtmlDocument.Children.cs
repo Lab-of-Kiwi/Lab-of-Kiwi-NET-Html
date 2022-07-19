@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace LabOfKiwi.Html;
 
@@ -24,22 +23,22 @@ public sealed partial class HtmlDocument : IHtmlContainerNode
         }
     }
 
-    public void Prepend<TElement>() where TElement : HtmlElement
+    public void Prepend<TElement>() where TElement : HtmlElement, new()
     {
         AddElement<TElement>(PrependNode, null, null);
     }
 
-    public void Prepend<TElement>(string? text) where TElement : HtmlElement
+    public void Prepend<TElement>(string? text) where TElement : HtmlElement, new()
     {
         AddElement<TElement>(PrependNode, text, null);
     }
 
-    public void Prepend<TElement>(Action<TElement>? callback) where TElement : HtmlElement
+    public void Prepend<TElement>(Action<TElement>? callback) where TElement : HtmlElement, new()
     {
         AddElement(PrependNode, null, callback);
     }
 
-    public void Prepend<TElement>(string? text, Action<TElement>? callback) where TElement : HtmlElement
+    public void Prepend<TElement>(string? text, Action<TElement>? callback) where TElement : HtmlElement, new()
     {
         AddElement(PrependNode, text, callback);
     }
@@ -105,7 +104,7 @@ public sealed partial class HtmlDocument : IHtmlContainerNode
         }
     }
 
-    public void Insert<TElement>(int index) where TElement : HtmlElement
+    public void Insert<TElement>(int index) where TElement : HtmlElement, new()
     {
         if ((uint)index > (uint)Nodes.Children.Count)
         {
@@ -115,7 +114,7 @@ public sealed partial class HtmlDocument : IHtmlContainerNode
         AddElement<TElement>(index, null, null);
     }
 
-    public void Insert<TElement>(int index, string? text) where TElement : HtmlElement
+    public void Insert<TElement>(int index, string? text) where TElement : HtmlElement, new()
     {
         if ((uint)index > (uint)Nodes.Children.Count)
         {
@@ -125,7 +124,7 @@ public sealed partial class HtmlDocument : IHtmlContainerNode
         AddElement<TElement>(index, text, null);
     }
 
-    public void Insert<TElement>(int index, Action<TElement>? callback) where TElement : HtmlElement
+    public void Insert<TElement>(int index, Action<TElement>? callback) where TElement : HtmlElement, new()
     {
         if ((uint)index > (uint)Nodes.Children.Count)
         {
@@ -135,7 +134,7 @@ public sealed partial class HtmlDocument : IHtmlContainerNode
         AddElement(index, null, callback);
     }
 
-    public void Insert<TElement>(int index, string? text, Action<TElement>? callback) where TElement : HtmlElement
+    public void Insert<TElement>(int index, string? text, Action<TElement>? callback) where TElement : HtmlElement, new()
     {
         if ((uint)index > (uint)Nodes.Children.Count)
         {
@@ -216,22 +215,22 @@ public sealed partial class HtmlDocument : IHtmlContainerNode
         }
     }
 
-    public void Append<TElement>() where TElement : HtmlElement
+    public void Append<TElement>() where TElement : HtmlElement, new()
     {
         AddElement<TElement>(AppendNode, null, null);
     }
 
-    public void Append<TElement>(string? text) where TElement : HtmlElement
+    public void Append<TElement>(string? text) where TElement : HtmlElement, new()
     {
         AddElement<TElement>(AppendNode, text, null);
     }
 
-    public void Append<TElement>(Action<TElement>? callback) where TElement : HtmlElement
+    public void Append<TElement>(Action<TElement>? callback) where TElement : HtmlElement, new()
     {
         AddElement(AppendNode, null, callback);
     }
 
-    public void Append<TElement>(string? text, Action<TElement>? callback) where TElement : HtmlElement
+    public void Append<TElement>(string? text, Action<TElement>? callback) where TElement : HtmlElement, new()
     {
         AddElement(AppendNode, text, callback);
     }

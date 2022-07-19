@@ -42,7 +42,7 @@ public sealed class HtmlSelector
         return CreateNext('>', false);
     }
 
-    public HtmlSelector Child<TElement>() where TElement : HtmlElement
+    public HtmlSelector Child<TElement>() where TElement : HtmlElement, new()
     {
         return CreateNext<TElement>('>');
     }
@@ -63,7 +63,7 @@ public sealed class HtmlSelector
         return CreateNext(null, false);
     }
 
-    public HtmlSelector Descendant<TElement>() where TElement : HtmlElement
+    public HtmlSelector Descendant<TElement>() where TElement : HtmlElement, new()
     {
         return CreateNext<TElement>(null);
     }
@@ -78,7 +78,7 @@ public sealed class HtmlSelector
         return CreateNext(',', false);
     }
 
-    public HtmlSelector Next<TElement>() where TElement : HtmlElement
+    public HtmlSelector Next<TElement>() where TElement : HtmlElement, new()
     {
         return CreateNext<TElement>(',');
     }
@@ -99,7 +99,7 @@ public sealed class HtmlSelector
         return CreateNext(mustBeAdjacent ? '+' : '~', false);
     }
 
-    public HtmlSelector Sibling<TElement>(bool mustBeAdjacent) where TElement : HtmlElement
+    public HtmlSelector Sibling<TElement>(bool mustBeAdjacent) where TElement : HtmlElement, new()
     {
         return CreateNext<TElement>(mustBeAdjacent ? '+' : '~');
     }
@@ -114,9 +114,9 @@ public sealed class HtmlSelector
         return new HtmlSelector(null);
     }
 
-    public static HtmlSelector Create<TElement>() where TElement : HtmlElement
+    public static HtmlSelector Create<TElement>() where TElement : HtmlElement, new()
     {
-        string tag = ElementRegistry.GetTagName<TElement>();
+        string tag = new TElement().ExpectedTagName;
         return new HtmlSelector(tag);
     }
 
@@ -157,14 +157,14 @@ public sealed class HtmlSelector
         return sb.ToString();
     }
 
-    private HtmlSelector CreateNext<TElement>(char? op) where TElement : HtmlElement
+    private HtmlSelector CreateNext<TElement>(char? op) where TElement : HtmlElement, new()
     {
         if (_next != null)
         {
             throw new InvalidOperationException("Next selector already set.");
         }
 
-        string tag = ElementRegistry.GetTagName<TElement>();
+        string tag = new TElement().ExpectedTagName;
         _operator = op;
         _next = new HtmlSelector(this, tag);
         return _next;

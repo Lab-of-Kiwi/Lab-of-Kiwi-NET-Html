@@ -2,16 +2,11 @@ using LabOfKiwi.Html.Attributes;
 using LabOfKiwi.Html.Attributes.Parsers;
 using System;
 using System.Collections.Generic;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class SCRIPT : HtmlElement
+public class SCRIPT : HtmlElement
 {
-    internal SCRIPT(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public bool AllowModule
     {
         get => !GetBoolean("nomodule");

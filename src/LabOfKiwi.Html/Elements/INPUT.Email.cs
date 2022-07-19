@@ -1,16 +1,11 @@
 ﻿using LabOfKiwi.Html.Attributes.Parsers;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
 public partial class INPUT
 {
-    public sealed class Email : INPUT
+    public class Email : INPUT
     {
-        internal Email(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-        {
-        }
-
         public bool AllowMultiple
         {
             get => GetBoolean("multiple");

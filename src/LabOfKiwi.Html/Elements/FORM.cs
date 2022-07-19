@@ -2,16 +2,11 @@ using LabOfKiwi.Html.Attributes;
 using LabOfKiwi.Html.Attributes.Parsers;
 using System;
 using System.Text;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class FORM : HtmlContainerElement
+public class FORM : HtmlContainerElement
 {
-    internal FORM(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public Encoding? AcceptCharset
     {
         get => GetObject<CharsetParser, Encoding>("accept-charset");

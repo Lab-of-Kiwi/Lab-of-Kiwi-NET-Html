@@ -1,16 +1,11 @@
 using LabOfKiwi.Html.Attributes;
 using LabOfKiwi.Html.Attributes.Parsers;
 using System;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class BUTTON : HtmlContainerElement
+public class BUTTON : HtmlContainerElement
 {
-    internal BUTTON(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public bool AllowFormValidation
     {
         get => !GetBoolean("formnovalidate");

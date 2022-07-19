@@ -1,15 +1,10 @@
 using LabOfKiwi.Html.Attributes;
 using LabOfKiwi.Html.Attributes.Parsers;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class TEXTAREA : HtmlContainerElement
+public class TEXTAREA : HtmlContainerElement
 {
-    internal TEXTAREA(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     // TODO
     public string? AutoComplete
     {

@@ -1,13 +1,7 @@
-using System.Xml;
-
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class OPTION : HtmlContainerElement
+public class OPTION : HtmlContainerElement
 {
-    internal OPTION(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public bool IsDisabled
     {
         get => GetBoolean("disabled");

@@ -19,13 +19,13 @@ public interface IHtmlContainerNode
 
     void PrependElement(string tagName, string? text, Action<HtmlElement>? callback);
 
-    void Prepend<TElement>() where TElement : HtmlElement;
+    void Prepend<TElement>() where TElement : HtmlElement, new();
 
-    void Prepend<TElement>(string? text) where TElement : HtmlElement;
+    void Prepend<TElement>(string? text) where TElement : HtmlElement, new();
 
-    void Prepend<TElement>(Action<TElement>? callback) where TElement : HtmlElement;
+    void Prepend<TElement>(Action<TElement>? callback) where TElement : HtmlElement, new();
 
-    void Prepend<TElement>(string? text, Action<TElement>? callback) where TElement : HtmlElement;
+    void Prepend<TElement>(string? text, Action<TElement>? callback) where TElement : HtmlElement, new();
 
     void PrependRawText(string? text);
 
@@ -43,13 +43,13 @@ public interface IHtmlContainerNode
 
     void InsertElement(int index, string tagName, string? text, Action<HtmlElement>? callback);
 
-    void Insert<TElement>(int index) where TElement : HtmlElement;
+    void Insert<TElement>(int index) where TElement : HtmlElement, new();
 
-    void Insert<TElement>(int index, string? text) where TElement : HtmlElement;
+    void Insert<TElement>(int index, string? text) where TElement : HtmlElement, new();
 
-    void Insert<TElement>(int index, Action<TElement>? callback) where TElement : HtmlElement;
+    void Insert<TElement>(int index, Action<TElement>? callback) where TElement : HtmlElement, new();
 
-    void Insert<TElement>(int index, string? text, Action<TElement>? callback) where TElement : HtmlElement;
+    void Insert<TElement>(int index, string? text, Action<TElement>? callback) where TElement : HtmlElement, new();
 
     void InsertRawText(int index, string? text);
 
@@ -67,13 +67,13 @@ public interface IHtmlContainerNode
 
     void AppendElement(string tagName, string? text, Action<HtmlElement>? callback);
 
-    void Append<TElement>() where TElement : HtmlElement;
+    void Append<TElement>() where TElement : HtmlElement, new();
 
-    void Append<TElement>(string? text) where TElement : HtmlElement;
+    void Append<TElement>(string? text) where TElement : HtmlElement, new();
 
-    void Append<TElement>(Action<TElement>? callback) where TElement : HtmlElement;
+    void Append<TElement>(Action<TElement>? callback) where TElement : HtmlElement, new();
 
-    void Append<TElement>(string? text, Action<TElement>? callback) where TElement : HtmlElement;
+    void Append<TElement>(string? text, Action<TElement>? callback) where TElement : HtmlElement, new();
 
     void AppendRawText(string? text);
 

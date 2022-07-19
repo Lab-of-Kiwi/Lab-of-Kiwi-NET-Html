@@ -1,16 +1,11 @@
 using LabOfKiwi.Html.Attributes;
 using LabOfKiwi.Html.Attributes.Parsers;
 using System;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class VIDEO : HtmlContainerElement
+public class VIDEO : HtmlContainerElement
 {
-    internal VIDEO(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public Crossorigin? Crossorigin
     {
         get => GetStruct<DashedEnumParser<Crossorigin>, Crossorigin>("crossorigin");

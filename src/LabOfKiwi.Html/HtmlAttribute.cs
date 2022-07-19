@@ -4,8 +4,9 @@ namespace LabOfKiwi.Html;
 
 public sealed class HtmlAttribute : HtmlNode
 {
-    internal HtmlAttribute(HtmlAgilityPack.HtmlAttribute coreAttribute) : base(coreAttribute.OwnerNode)
+    internal HtmlAttribute(HtmlAgilityPack.HtmlAttribute coreAttribute)
     {
+        base.CoreNode = coreAttribute.OwnerNode;
         CoreAttribute = coreAttribute;
     }
 

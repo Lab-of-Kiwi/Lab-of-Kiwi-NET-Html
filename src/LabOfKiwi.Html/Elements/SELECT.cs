@@ -1,14 +1,9 @@
 using LabOfKiwi.Html.Attributes.Parsers;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class SELECT : HtmlContainerElement
+public class SELECT : HtmlContainerElement
 {
-    internal SELECT(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public bool AllowMultiple
     {
         get => GetBoolean("multiple");

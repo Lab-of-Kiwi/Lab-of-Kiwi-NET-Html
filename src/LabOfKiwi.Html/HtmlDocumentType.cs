@@ -4,8 +4,9 @@ namespace LabOfKiwi.Html;
 
 public sealed class HtmlDocumentType : HtmlNode
 {
-    internal HtmlDocumentType(HtmlAgilityPack.HtmlCommentNode coreDocumentType) : base(coreDocumentType)
+    internal HtmlDocumentType(HtmlAgilityPack.HtmlCommentNode coreDocumentType)
     {
+        base.CoreNode = coreDocumentType;
     }
 
     public override string NodeName => CoreNode.InnerText[10..^1];

@@ -4,8 +4,9 @@ namespace LabOfKiwi.Html;
 
 public sealed class HtmlText : HtmlNode
 {
-    internal HtmlText(HtmlAgilityPack.HtmlTextNode coreText) : base(coreText)
+    internal HtmlText(HtmlAgilityPack.HtmlTextNode coreText)
     {
+        base.CoreNode = coreText;
     }
 
     public override XmlNodeType NodeType => XmlNodeType.Text;

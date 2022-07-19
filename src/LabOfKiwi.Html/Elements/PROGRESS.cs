@@ -1,14 +1,9 @@
 using LabOfKiwi.Html.Attributes.Parsers;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class PROGRESS : HtmlContainerElement
+public class PROGRESS : HtmlContainerElement
 {
-    internal PROGRESS(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public float? Max
     {
         get => GetStruct<FloatParser, float>("max");

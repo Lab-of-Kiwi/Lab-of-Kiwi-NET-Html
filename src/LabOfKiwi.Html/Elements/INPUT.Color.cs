@@ -1,16 +1,11 @@
 ﻿using LabOfKiwi.Html.Attributes.Parsers;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
 public partial class INPUT
 {
-    public sealed class Color : INPUT
+    public class Color : INPUT
     {
-        internal Color(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-        {
-        }
-
         // TODO
         public string? AutoComplete
         {

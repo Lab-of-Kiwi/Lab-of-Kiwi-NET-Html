@@ -2,16 +2,11 @@ using LabOfKiwi.Html.Attributes;
 using LabOfKiwi.Html.Attributes.Parsers;
 using System;
 using System.Collections.Generic;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class IMG : HtmlVoidElement
+public class IMG : HtmlVoidElement
 {
-    internal IMG(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public string? Alt
     {
         get => Get("alt");

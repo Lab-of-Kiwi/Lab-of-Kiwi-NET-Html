@@ -1,15 +1,10 @@
 using LabOfKiwi.Html.Attributes.Parsers;
 using System.Collections.Generic;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class STYLE : HtmlElement
+public class STYLE : HtmlElement
 {
-    internal STYLE(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public ISet<string> Blocking => GetSet<TokenParser, string>("blocking", delimiter: " ");
 
     public string? Content

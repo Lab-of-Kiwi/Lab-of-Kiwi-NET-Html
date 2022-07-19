@@ -1,14 +1,9 @@
 using LabOfKiwi.Html.Attributes.Parsers;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
-public sealed class CANVAS : HtmlContainerElement
+public class CANVAS : HtmlContainerElement
 {
-    internal CANVAS(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-    {
-    }
-
     public long? Height
     {
         get => GetStruct<LongParser.NonNegative, long>("height");

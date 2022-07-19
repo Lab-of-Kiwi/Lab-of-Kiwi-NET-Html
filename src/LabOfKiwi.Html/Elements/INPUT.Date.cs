@@ -1,18 +1,13 @@
 ﻿using LabOfKiwi.Html.Attributes;
 using LabOfKiwi.Html.Attributes.Parsers;
 using System;
-using System.Xml;
 
 namespace LabOfKiwi.Html.Elements;
 
 public partial class INPUT
 {
-    public sealed class Date : INPUT
+    public class Date : INPUT
     {
-        internal Date(HtmlAgilityPack.HtmlNode xmlElement) : base(xmlElement)
-        {
-        }
-
         public string? AutoComplete
         {
             get => Get("autocomplete");
