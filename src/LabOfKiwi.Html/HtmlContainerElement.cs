@@ -1,6 +1,10 @@
 ﻿namespace LabOfKiwi.Html;
 
-public partial class HtmlContainerElement : HtmlElement
+public abstract partial class HtmlContainerElement : HtmlElement
 {
+    internal HtmlContainerElement()
+    {
+    }
+
     public sealed override bool IsVoidElement => false;
 }

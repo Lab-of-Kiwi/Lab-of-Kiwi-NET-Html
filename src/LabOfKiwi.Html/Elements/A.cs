@@ -48,4 +48,6 @@ public class A : HtmlContainerElement
         get => Get("type");
         set => Set("type", value);
     }
+
+    internal sealed override string ExpectedTagName => "a";
 }

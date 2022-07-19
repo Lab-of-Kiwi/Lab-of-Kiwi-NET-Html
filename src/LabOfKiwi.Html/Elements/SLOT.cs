@@ -7,4 +7,6 @@ public class SLOT : HtmlContainerElement
         get => Get("name");
         set => Set("name", value);
     }
+
+    internal sealed override string ExpectedTagName => "slot";
 }

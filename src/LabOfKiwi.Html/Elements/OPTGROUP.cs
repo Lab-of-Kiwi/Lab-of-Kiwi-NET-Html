@@ -13,4 +13,6 @@ public class OPTGROUP : HtmlContainerElement
         get => Get("label");
         set => Set("label", value);
     }
+
+    internal sealed override string ExpectedTagName => "optgroup";
 }

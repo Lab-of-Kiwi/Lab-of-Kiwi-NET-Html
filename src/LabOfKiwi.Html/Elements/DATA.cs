@@ -7,4 +7,6 @@ public class DATA : HtmlContainerElement
         get => Get("value");
         set => Set("value", value);
     }
+
+    internal sealed override string ExpectedTagName => "data";
 }

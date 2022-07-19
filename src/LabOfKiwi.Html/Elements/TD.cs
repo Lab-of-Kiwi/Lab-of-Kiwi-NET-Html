@@ -18,4 +18,6 @@ public class TD : HtmlContainerElement
         get => GetStruct<LongParser.NonNegative, long>("rowspan");
         set => SetStruct<LongParser.NonNegative, long>("rowspan", value);
     }
+
+    internal sealed override string ExpectedTagName => "td";
 }

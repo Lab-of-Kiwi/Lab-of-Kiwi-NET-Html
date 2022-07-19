@@ -39,4 +39,6 @@ public class STYLE : HtmlElement
         get => Get("media");
         set => Set("media", value);
     }
+
+    internal sealed override string ExpectedTagName => "style";
 }

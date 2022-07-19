@@ -39,4 +39,6 @@ public class METER : HtmlContainerElement
         get => GetStruct<FloatParser, float>("value");
         set => SetStruct<FloatParser, float>("value", value);
     }
+
+    internal sealed override string ExpectedTagName => "meter";
 }

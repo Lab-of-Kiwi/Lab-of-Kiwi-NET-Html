@@ -10,4 +10,5 @@ public class LABEL : HtmlContainerElement
         set => SetObject<TokenParser, string>("for", value);
     }
 
+    internal sealed override string ExpectedTagName => "label";
 }

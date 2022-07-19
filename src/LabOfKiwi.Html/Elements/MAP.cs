@@ -7,4 +7,6 @@ public class MAP : HtmlContainerElement
         get => Get("name");
         set => Set("name", value);
     }
+
+    internal sealed override string ExpectedTagName => "map";
 }

@@ -47,4 +47,6 @@ public class SOURCE : HtmlVoidElement
         get => GetStruct<LongParser.NonNegative, long>("width");
         set => SetStruct<LongParser.NonNegative, long>("width", value);
     }
+
+    internal sealed override string ExpectedTagName => "source";
 }

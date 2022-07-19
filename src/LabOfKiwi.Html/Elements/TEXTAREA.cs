@@ -83,4 +83,6 @@ public class TEXTAREA : HtmlContainerElement
         get => GetEnum<Wrap>("wrap");
         set => SetEnum("wrap", value);
     }
+
+    internal sealed override string ExpectedTagName => "textarea";
 }

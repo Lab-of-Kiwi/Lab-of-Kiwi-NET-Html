@@ -36,4 +36,6 @@ public class TRACK : HtmlVoidElement
         get => GetObject<CultureInfoParser, CultureInfo>("srclang");
         set => SetObject<CultureInfoParser, CultureInfo>("srclang", value);
     }
+
+    internal sealed override string ExpectedTagName => "track";
 }

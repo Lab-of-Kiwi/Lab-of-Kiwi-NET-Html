@@ -17,4 +17,6 @@ public class DEL : HtmlContainerElement
         get => Get("datetime");
         set => Set("datatime", value);
     }
+
+    internal sealed override string ExpectedTagName => "del";
 }

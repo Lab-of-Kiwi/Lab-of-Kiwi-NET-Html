@@ -29,4 +29,6 @@ public class EMBED : HtmlVoidElement
         get => GetStruct<LongParser.NonNegative, long>("width");
         set => SetStruct<LongParser.NonNegative, long>("width", value);
     }
+
+    internal sealed override string ExpectedTagName => "embed";
 }

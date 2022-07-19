@@ -9,4 +9,6 @@ public class COL : HtmlVoidElement
         get => GetStruct<LongParser.Positive, long>("span");
         set => SetStruct<LongParser.Positive, long>("span", value);
     }
+
+    internal sealed override string ExpectedTagName => "col";
 }

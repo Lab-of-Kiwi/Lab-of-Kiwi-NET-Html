@@ -9,4 +9,6 @@ public class LI : HtmlContainerElement
         get => GetStruct<LongParser, long>("value");
         set => SetStruct<LongParser, long>("value", value);
     }
+
+    internal sealed override string ExpectedTagName => "li";
 }

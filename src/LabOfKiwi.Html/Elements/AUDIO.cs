@@ -41,4 +41,6 @@ public class AUDIO : HtmlContainerElement
         get => GetObject<UrlParser, Uri>("src");
         set => SetObject<UrlParser, Uri>("src", value);
     }
+
+    internal sealed override string ExpectedTagName => "audio";
 }

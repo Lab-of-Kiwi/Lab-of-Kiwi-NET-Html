@@ -42,4 +42,6 @@ public class OBJECT : HtmlContainerElement
         get => GetStruct<LongParser.NonNegative, long>("width");
         set => SetStruct<LongParser.NonNegative, long>("width", value);
     }
+
+    internal sealed override string ExpectedTagName => "object";
 }

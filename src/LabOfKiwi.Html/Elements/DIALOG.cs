@@ -7,4 +7,6 @@ public class DIALOG : HtmlContainerElement
         get => GetBoolean("open");
         set => SetBoolean("open", value);
     }
+
+    internal sealed override string ExpectedTagName => "dialog";
 }

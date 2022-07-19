@@ -21,4 +21,6 @@ public class FIELDSET : HtmlContainerElement
         get => Get("name");
         set => Set("name", value);
     }
+
+    internal sealed override string ExpectedTagName => "fieldset";
 }

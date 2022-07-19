@@ -20,7 +20,7 @@ public abstract partial class HtmlElement : HtmlNode
 
     public sealed override HtmlDocument OwnerDocument => base.OwnerDocument;
 
-    internal virtual string ExpectedTagName => GetType().Name.ToLowerInvariant();
+    internal abstract string ExpectedTagName { get; }
 
     public string? GetAttributeValue(string attributeName)
     {

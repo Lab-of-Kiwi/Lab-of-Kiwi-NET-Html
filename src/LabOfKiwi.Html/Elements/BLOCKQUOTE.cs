@@ -10,4 +10,6 @@ public class BLOCKQUOTE : HtmlContainerElement
         get => GetObject<UrlParser, Uri>("cite");
         set => SetObject<UrlParser, Uri>("cite", value);
     }
+
+    internal sealed override string ExpectedTagName => "blockquote";
 }

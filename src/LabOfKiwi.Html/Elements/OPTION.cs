@@ -25,4 +25,6 @@ public class OPTION : HtmlContainerElement
         get => Get("value");
         set => Set("value", value);
     }
+
+    internal sealed override string ExpectedTagName => "option";
 }

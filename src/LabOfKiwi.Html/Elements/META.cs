@@ -36,4 +36,6 @@ public class META : HtmlVoidElement
         get => Get("name");
         set => Set("name", value);
     }
+
+    internal sealed override string ExpectedTagName => "meta";
 }

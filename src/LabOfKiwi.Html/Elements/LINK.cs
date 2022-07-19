@@ -88,4 +88,6 @@ public class LINK : HtmlVoidElement
         get => Get("type");
         set => Set("type", value);
     }
+
+    internal sealed override string ExpectedTagName => "link";
 }

@@ -46,4 +46,6 @@ public class SELECT : HtmlContainerElement
         get => GetStruct<LongParser.Positive, long>("size");
         set => SetStruct<LongParser.Positive, long>("size", value);
     }
+
+    internal sealed override string ExpectedTagName => "select";
 }

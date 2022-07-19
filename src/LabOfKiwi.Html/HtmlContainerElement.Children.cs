@@ -2,7 +2,7 @@
 
 namespace LabOfKiwi.Html;
 
-public partial class HtmlContainerElement : IHtmlContainerNode
+public abstract partial class HtmlContainerElement : IHtmlContainerNode
 {
     public void Invoke<THtmlElementProcessor>() where THtmlElementProcessor : IHtmlElementProcessor, new()
     {

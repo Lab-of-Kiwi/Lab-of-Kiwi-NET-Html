@@ -8,4 +8,6 @@ public class TIME : HtmlContainerElement
         get => Get("datetime");
         set => Set("datatime", value);
     }
+
+    internal sealed override string ExpectedTagName => "time";
 }

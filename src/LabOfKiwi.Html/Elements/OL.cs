@@ -22,4 +22,6 @@ public class OL : HtmlContainerElement
         get => GetStruct<ULMarkerTypeParser, UnorderedListMarkerType>("type");
         set => SetStruct<ULMarkerTypeParser, UnorderedListMarkerType>("type", value);
     }
+
+    internal sealed override string ExpectedTagName => "ol";
 }

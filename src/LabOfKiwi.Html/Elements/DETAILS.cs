@@ -7,4 +7,6 @@ public class DETAILS : HtmlContainerElement
         get => GetBoolean("open");
         set => SetBoolean("open", value);
     }
+
+    internal sealed override string ExpectedTagName => "details";
 }

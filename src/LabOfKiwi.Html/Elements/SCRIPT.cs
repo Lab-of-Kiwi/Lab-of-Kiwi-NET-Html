@@ -83,4 +83,6 @@ public class SCRIPT : HtmlElement
         get => Get("type");
         set => Set("type", value);
     }
+
+    internal sealed override string ExpectedTagName => "script";
 }

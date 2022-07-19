@@ -17,4 +17,6 @@ public class BASE : HtmlVoidElement
         get => GetStruct<BrowsingContextParser, BrowsingContext>("target");
         set => SetStruct<BrowsingContextParser, BrowsingContext>("target", value);
     }
+
+    internal sealed override string ExpectedTagName => "base";
 }

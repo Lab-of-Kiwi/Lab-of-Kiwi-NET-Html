@@ -31,4 +31,6 @@ public class TH : HtmlContainerElement
         get => GetEnum<Scope>("scope");
         set => SetEnum("scope", value);
     }
+
+    internal sealed override string ExpectedTagName => "th";
 }

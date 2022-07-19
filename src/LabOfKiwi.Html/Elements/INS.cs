@@ -17,4 +17,6 @@ public class INS : HtmlContainerElement
         get => Get("datetime");
         set => Set("datatime", value);
     }
+
+    internal sealed override string ExpectedTagName => "ins";
 }
