@@ -2,7 +2,7 @@
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct StepParser : IAttributeParser<Step>
+internal readonly struct StepParser : IAttributeParser<Step>
 {
     public bool IsValid(Step input)
     {

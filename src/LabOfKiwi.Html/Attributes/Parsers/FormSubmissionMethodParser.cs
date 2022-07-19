@@ -2,7 +2,7 @@
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct FormSubmissionMethodParser : IAttributeParser<FormSubmissionMethod>
+internal readonly struct FormSubmissionMethodParser : IAttributeParser<FormSubmissionMethod>
 {
     public bool IsValid(FormSubmissionMethod input)
     {

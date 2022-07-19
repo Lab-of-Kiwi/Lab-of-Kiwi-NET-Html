@@ -2,7 +2,7 @@
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct FloatParser : IAttributeParser<float>
+internal readonly struct FloatParser : IAttributeParser<float>
 {
     public bool IsValid(float input)
     {

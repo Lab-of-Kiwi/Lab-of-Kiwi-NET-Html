@@ -1,6 +1,6 @@
 ﻿namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct AccessKeyParser : IAttributeParser<char, CharParser>
+internal readonly struct AccessKeyParser : IAttributeParser<char, CharParser>
 {
     public bool IsValid(char input)
     {

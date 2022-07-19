@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct UrlParser : IAttributeParser<Uri>
+internal readonly struct UrlParser : IAttributeParser<Uri>
 {
     public bool IsValid(Uri input)
     {

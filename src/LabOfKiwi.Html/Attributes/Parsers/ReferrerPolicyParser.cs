@@ -2,7 +2,7 @@
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct ReferrerPolicyParser : IAttributeParser<ReferrerPolicy>
+internal readonly struct ReferrerPolicyParser : IAttributeParser<ReferrerPolicy>
 {
     public bool IsValid(ReferrerPolicy value)
     {

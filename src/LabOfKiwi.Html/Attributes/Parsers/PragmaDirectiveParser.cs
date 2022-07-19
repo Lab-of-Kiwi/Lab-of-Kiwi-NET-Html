@@ -2,7 +2,7 @@
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct PragmaDirectiveParser : IAttributeParser<PragmaDirective>
+internal readonly struct PragmaDirectiveParser : IAttributeParser<PragmaDirective>
 {
     public bool IsValid(PragmaDirective input)
     {

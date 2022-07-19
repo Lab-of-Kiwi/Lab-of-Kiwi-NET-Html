@@ -2,7 +2,7 @@
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct ULMarkerTypeParser : IAttributeParser<UnorderedListMarkerType>
+internal readonly struct ULMarkerTypeParser : IAttributeParser<UnorderedListMarkerType>
 {
     public bool IsValid(UnorderedListMarkerType input)
     {

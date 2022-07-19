@@ -2,7 +2,7 @@
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct TextDirectionParser : IAttributeParser<TextDirection>
+internal readonly struct TextDirectionParser : IAttributeParser<TextDirection>
 {
     public bool IsValid(TextDirection input)
     {

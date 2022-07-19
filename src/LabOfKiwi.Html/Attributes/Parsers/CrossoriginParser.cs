@@ -2,7 +2,7 @@
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct CrossoriginParser : IAttributeParser<Crossorigin>
+internal readonly struct CrossoriginParser : IAttributeParser<Crossorigin>
 {
     public bool IsValid(Crossorigin value)
     {

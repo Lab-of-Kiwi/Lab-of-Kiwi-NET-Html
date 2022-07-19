@@ -2,7 +2,7 @@
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct StringParser : IAttributeParser<string>
+internal readonly struct StringParser : IAttributeParser<string>
 {
     public bool IsValid(string input)
     {

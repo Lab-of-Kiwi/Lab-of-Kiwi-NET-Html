@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct MonthParser : IAttributeParser<DateOnly>
+internal readonly struct MonthParser : IAttributeParser<DateOnly>
 {
     public bool IsValid(DateOnly input)
     {

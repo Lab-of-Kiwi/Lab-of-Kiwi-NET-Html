@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct EnumParser<T> : IAttributeParser<T> where T : struct, Enum
+internal readonly struct EnumParser<T> : IAttributeParser<T> where T : struct, Enum
 {
     public bool IsValid(T input)
     {

@@ -3,7 +3,7 @@ using System.Text;
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct CharsetParser : IAttributeParser<Encoding>
+internal readonly struct CharsetParser : IAttributeParser<Encoding>
 {
     public bool IsValid(Encoding input)
     {

@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct DateTimeParser : IAttributeParser<DateTime>
+internal readonly struct DateTimeParser : IAttributeParser<DateTime>
 {
     public bool IsValid(DateTime input)
     {

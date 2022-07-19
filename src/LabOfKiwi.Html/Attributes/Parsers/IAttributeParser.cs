@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public interface IAttributeParser<T> : IParser<T> where T : notnull
+internal interface IAttributeParser<T> : IParser<T> where T : notnull
 {
     IList<T> AsList(HtmlAgilityPack.HtmlNode element, string attributeName, string delimiter)
     {
@@ -83,7 +83,7 @@ public interface IAttributeParser<T> : IParser<T> where T : notnull
     }
 }
 
-public interface IAttributeParser<T, TParent> : IAttributeParser<T>, IParser<T, TParent>
+internal interface IAttributeParser<T, TParent> : IAttributeParser<T>, IParser<T, TParent>
     where T : notnull
     where TParent :  IAttributeParser<T>, new()
 {

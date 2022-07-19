@@ -2,7 +2,7 @@
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct EncodingTypeParser : IAttributeParser<EncodingType>
+internal readonly struct EncodingTypeParser : IAttributeParser<EncodingType>
 {
     public bool IsValid(EncodingType input)
     {

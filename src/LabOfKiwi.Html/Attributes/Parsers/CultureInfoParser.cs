@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct CultureInfoParser : IAttributeParser<CultureInfo>
+internal readonly struct CultureInfoParser : IAttributeParser<CultureInfo>
 {
     public bool IsValid(CultureInfo input)
     {

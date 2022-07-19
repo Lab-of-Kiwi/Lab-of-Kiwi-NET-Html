@@ -2,7 +2,7 @@
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct LongParser : IAttributeParser<long>
+internal readonly struct LongParser : IAttributeParser<long>
 {
     public bool IsValid(long input)
     {
@@ -20,7 +20,7 @@ public readonly struct LongParser : IAttributeParser<long>
         return true;
     }
 
-    public readonly struct NonNegative : IAttributeParser<long, LongParser>
+    internal readonly struct NonNegative : IAttributeParser<long, LongParser>
     {
         public bool IsValid(long input)
         {
@@ -28,7 +28,7 @@ public readonly struct LongParser : IAttributeParser<long>
         }
     }
 
-    public readonly struct Positive : IAttributeParser<long, LongParser>
+    internal readonly struct Positive : IAttributeParser<long, LongParser>
     {
         public bool IsValid(long input)
         {

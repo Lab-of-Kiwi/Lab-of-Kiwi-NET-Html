@@ -1,6 +1,6 @@
 ﻿namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct AcceptParser : IAttributeParser<string, StringParser>
+internal readonly struct AcceptParser : IAttributeParser<string, StringParser>
 {
     private static readonly string[] Predefined = new string[]
     {

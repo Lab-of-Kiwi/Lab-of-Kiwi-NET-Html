@@ -2,7 +2,7 @@
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct YesNoParser : IAttributeParser<bool>
+internal readonly struct YesNoParser : IAttributeParser<bool>
 {
     private const string True = "yes";
     private const string False = "no";

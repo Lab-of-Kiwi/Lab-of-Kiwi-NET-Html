@@ -2,7 +2,7 @@
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct OnOffParser : IAttributeParser<bool>
+internal readonly struct OnOffParser : IAttributeParser<bool>
 {
     private const string True = "on";
     private const string False = "off";

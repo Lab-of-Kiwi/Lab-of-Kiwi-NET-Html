@@ -2,7 +2,7 @@
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct BrowsingContextParser : IAttributeParser<BrowsingContext>
+internal readonly struct BrowsingContextParser : IAttributeParser<BrowsingContext>
 {
     public bool IsValid(BrowsingContext input)
     {

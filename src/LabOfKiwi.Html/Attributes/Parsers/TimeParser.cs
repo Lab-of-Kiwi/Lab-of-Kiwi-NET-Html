@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct TimeParser : IAttributeParser<TimeOnly>
+internal readonly struct TimeParser : IAttributeParser<TimeOnly>
 {
     public bool IsValid(TimeOnly input)
     {

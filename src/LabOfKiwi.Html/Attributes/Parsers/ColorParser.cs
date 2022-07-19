@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace LabOfKiwi.Html.Attributes.Parsers;
 
-public readonly struct ColorParser : IAttributeParser<Color>
+internal readonly struct ColorParser : IAttributeParser<Color>
 {
     public bool IsValid(Color input)
     {
