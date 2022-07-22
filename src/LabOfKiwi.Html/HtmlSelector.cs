@@ -1,184 +1,321 @@
-﻿using System;
+﻿using LabOfKiwi.Collections;
+using LabOfKiwi.Html.Attributes.Parsers;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace LabOfKiwi.Html;
 
 public sealed class HtmlSelector
 {
-    private readonly HtmlSelector? _prev;
-    private readonly string? _element;
-    private string? _id;
-    private readonly ISet<string> _classes;
+    private static readonly TokenParser TokenParser = new(); 
 
-    private char? _operator;
+    private readonly HtmlSelector? _previous;
+    private char _combinator;
     private HtmlSelector? _next;
 
-    private HtmlSelector(string? element) : this(null, element)
+    private string? _typeSelector;
+    private string? _idSelector;
+    private readonly ListSet<PseudoClass> _pseudoClasses;
+    private PseudoElement? _pseudoElement;
+    private readonly List<string> _classSelectors;
+
+    private HtmlSelector() : this(null)
     {
     }
 
-    private HtmlSelector(HtmlSelector? previous, string? element)
+    private HtmlSelector(HtmlSelector? previous)
     {
-        _prev = previous;
-        _element = element;
-        _classes = new HashSet<string>();
+        _previous = previous;
+        _classSelectors = new List<string>();
+        _pseudoClasses = new ListSet<PseudoClass>();
     }
 
-    public string? Id => _id;
-
-    public HtmlSelector AddClass(string? cls)
+    public HtmlSelector AddPseudoClass(PseudoClass value)
     {
-        if (cls != null)
-        {
-            _classes.Add(cls);
-        }
-
+        _pseudoClasses.Add(value);
         return this;
     }
 
-    public HtmlSelector Child()
+    public IHtmlSelectorProvider Descendant()
     {
-        return CreateNext('>', false);
+        return new HtmlSelectorProvider(this, default);
     }
 
-    public HtmlSelector Child<TElement>() where TElement : HtmlElement, new()
+    public IHtmlSelectorProvider Child()
     {
-        return CreateNext<TElement>('>');
-    }
-
-    public HtmlSelector ChildUniversal()
-    {
-        return CreateNext('>', true);
+        return new HtmlSelectorProvider(this, '>');
     }
 
     public HtmlSelector ClearClasses()
     {
-        _classes.Clear();
-        return this;
+        // TODO validate classes can be cleared.
+        var latest = Tail;
+        latest._classSelectors.Clear();
+        return latest;
     }
 
-    public HtmlSelector Descendant()
+    public static IHtmlSelectorProvider Create()
     {
-        return CreateNext(null, false);
+        return new HtmlSelectorProvider(null, default);
     }
 
-    public HtmlSelector Descendant<TElement>() where TElement : HtmlElement, new()
+    public override bool Equals(object? obj)
     {
-        return CreateNext<TElement>(null);
+        if (ReferenceEquals(this, obj))
+        {
+            return true;
+        }
+
+        if (obj is HtmlSelector other)
+        {
+            return ReferenceEquals(Head, other.Head);
+        }
+
+        return false;
     }
 
-    public HtmlSelector DescendantUniversal()
+    public override int GetHashCode()
     {
-        return CreateNext(null, true);
+        if (_previous == null)
+        {
+            return base.GetHashCode();
+        }
+
+        return _previous.GetHashCode();
     }
 
-    public HtmlSelector Next()
+    public IHtmlSelectorProvider NextSelector()
     {
-        return CreateNext(',', false);
+        return new HtmlSelectorProvider(this, ',');
     }
 
-    public HtmlSelector Next<TElement>() where TElement : HtmlElement, new()
+    public IHtmlSelectorProvider NextSibling()
     {
-        return CreateNext<TElement>(',');
-    }
-
-    public HtmlSelector NextUniversal()
-    {
-        return CreateNext(',', true);
+        return new HtmlSelectorProvider(this, '+');
     }
 
     public HtmlSelector SetId(string? id)
     {
-        _id = id;
+        var tail = Tail;
+
+        if (id != null && !TokenParser.IsValid(id))
+        {
+            throw new ArgumentException("Invalid id.");
+        }
+
+        tail._idSelector = id;
+        return tail;
+    }
+
+    public HtmlSelector SetPseudoElement(PseudoElement? pseudoElement)
+    {
+        _pseudoElement = pseudoElement;
         return this;
     }
 
-    public HtmlSelector Sibling(bool mustBeAdjacent)
+    public IHtmlSelectorProvider SubsequentSibling()
     {
-        return CreateNext(mustBeAdjacent ? '+' : '~', false);
-    }
-
-    public HtmlSelector Sibling<TElement>(bool mustBeAdjacent) where TElement : HtmlElement, new()
-    {
-        return CreateNext<TElement>(mustBeAdjacent ? '+' : '~');
-    }
-
-    public HtmlSelector SiblingUniversal(bool mustBeAdjacent)
-    {
-        return CreateNext(mustBeAdjacent ? '+' : '~', true);
-    }
-
-    public static HtmlSelector Create()
-    {
-        return new HtmlSelector(null);
-    }
-
-    public static HtmlSelector Create<TElement>() where TElement : HtmlElement, new()
-    {
-        string tag = new TElement().ExpectedTagName;
-        return new HtmlSelector(tag);
-    }
-
-    public static HtmlSelector CreateUniversal()
-    {
-        return new HtmlSelector("*");
+        return new HtmlSelectorProvider(this, '~');
     }
 
     public override string ToString()
     {
         StringBuilder sb = new();
+        Head.ToString(sb);
+        return sb.ToString();
+    }
 
-        if (_element != null)
+    private HtmlSelector Head
+    {
+        get
         {
-            sb.Append(_element);
+            if (_previous == null)
+            {
+                return this;
+            }
+
+            return _previous.Head;
+        }
+    }
+
+    private HtmlSelector Tail
+    {
+        get
+        {
+            if (_next == null)
+            {
+                return this;
+            }
+
+            return _next.Tail;
+        }
+    }
+
+    private void ToString(StringBuilder sb)
+    {
+        if (_typeSelector != null)
+        {
+            sb.Append(_typeSelector);
         }
 
-        if (_id != null)
+        if (_idSelector != null)
         {
-            sb.Append('#').Append(_id);
+            sb.Append('#').Append(_idSelector);
         }
 
-        foreach (string cls in _classes)
+        foreach (var cls in _classSelectors)
         {
             sb.Append('.').Append(cls);
         }
 
+        foreach (var pseudoClass in _pseudoClasses)
+        {
+            sb.Append(':').Append(pseudoClass.ToWebString());
+        }
+
+        if (_pseudoElement.HasValue)
+        {
+            sb.Append("::").Append(_pseudoElement.Value.ToWebString());
+        }
+
         if (_next != null)
         {
-            if (_operator.HasValue)
+            sb.Append(' ');
+
+            if (_combinator != default)
             {
-                sb.Append(' ').Append(_operator.Value);
+                sb.Append(_combinator).Append(' ');
             }
 
-            sb.Append(' ').Append(_next.ToString());
+            _next.ToString(sb);
         }
-
-        return sb.ToString();
     }
 
-    private HtmlSelector CreateNext<TElement>(char? op) where TElement : HtmlElement, new()
+    private sealed class HtmlSelectorProvider : IHtmlSelectorProvider
     {
-        if (_next != null)
+        private readonly HtmlSelector? _previous;
+        private readonly char _combinator;
+        private bool _provided;
+
+        public HtmlSelectorProvider(HtmlSelector? previous, char combinator)
         {
-            throw new InvalidOperationException("Next selector already set.");
+            _previous = previous;
+            _combinator = combinator;
+            _provided = false;
         }
 
-        string tag = new TElement().ExpectedTagName;
-        _operator = op;
-        _next = new HtmlSelector(this, tag);
-        return _next;
-    }
-
-    private HtmlSelector CreateNext(char? op, bool isUniversal)
-    {
-        if (_next != null)
+        public HtmlSelector AllTypes()
         {
-            throw new InvalidOperationException("Next selector already set.");
+            var sel = Create();
+            sel._typeSelector = "*";
+            return sel;
         }
 
-        _operator = op;
-        _next = new HtmlSelector(this, isUniversal ? "*" : null);
-        return _next;
+        public HtmlSelector AllTypesWithAnyNamespace()
+        {
+            var sel = Create();
+            sel._typeSelector = "*|*";
+            return sel;
+        }
+
+        public HtmlSelector AllTypesWithNamespace(string ns)
+        {
+            if (ns == null)
+            {
+                throw new ArgumentNullException(nameof(ns));
+            }
+
+            // TODO validate namespace
+            var sel = Create();
+            sel._typeSelector = $"{ns}|*";
+            return sel;
+        }
+
+        public HtmlSelector AllTypesWithoutNamespace()
+        {
+            var sel = Create();
+            sel._typeSelector = "|*";
+            return sel;
+        }
+
+        public HtmlSelector OfType<TElement>() where TElement : HtmlElement, new()
+        {
+            var sel = Create();
+            sel._typeSelector = new TElement().ExpectedTagName;
+            return sel;
+        }
+
+        public HtmlSelector OfType(string type)
+        {
+            if (type == null)
+            {
+                throw new ArgumentNullException(nameof(type));
+            }
+
+            // TODO validate type
+            var sel = Create();
+            sel._typeSelector = type;
+            return sel;
+        }
+
+        public HtmlSelector WithClasses(params string[] classes)
+        {
+            if (classes == null)
+            {
+                throw new ArgumentNullException(nameof(classes));
+            }
+
+            if (classes.Length == 0)
+            {
+                throw new ArgumentException("At least one class is required.");
+            }
+
+            if (classes.Any(c => !TokenParser.IsValid(c)))
+            {
+                throw new ArgumentException("Classes contains an invalid value.");
+            }
+
+            var sel = Create();
+            sel._classSelectors.AddRange(classes.Distinct());
+            return sel;
+        }
+
+        public HtmlSelector WithId(string id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            if (!TokenParser.IsValid(id))
+            {
+                throw new ArgumentException("Invalid id.");
+            }
+
+            var sel = Create();
+            sel._idSelector = id;
+            return sel;
+        }
+
+        private HtmlSelector Create()
+        {
+            if (_provided)
+            {
+                throw new InvalidOperationException("Selector has already been provided.");
+            }
+
+            HtmlSelector selector = new(_previous);
+
+            if (_previous != null)
+            {
+                _previous._combinator = _combinator;
+                _previous._next = selector;
+            }
+
+            _provided = true;
+            return selector;
+        }
     }
 }

@@ -3,6 +3,9 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace LabOfKiwi.Html.Attributes;
 
+/// <summary>
+/// Represents an environment in which HTML Document objects are presented to the user.
+/// </summary>
 public readonly struct BrowsingContext : IEquatable<BrowsingContext>
 {
     private static readonly string[] Reserved = new string[]
@@ -10,10 +13,10 @@ public readonly struct BrowsingContext : IEquatable<BrowsingContext>
         "_blank", "_self", "_parent", "_top"
     };
 
-    public static readonly BrowsingContext Blank = new(Reserved[0]);
-    public static readonly BrowsingContext Self = new(Reserved[1]);
+    public static readonly BrowsingContext Blank  = new(Reserved[0]);
+    public static readonly BrowsingContext Self   = new(Reserved[1]);
     public static readonly BrowsingContext Parent = new(Reserved[2]);
-    public static readonly BrowsingContext Top = new(Reserved[3]);
+    public static readonly BrowsingContext Top    = new(Reserved[3]);
 
     private readonly string? _value;
 
