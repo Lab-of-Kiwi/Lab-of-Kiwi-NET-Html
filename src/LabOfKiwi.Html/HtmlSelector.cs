@@ -175,9 +175,9 @@ public sealed class HtmlSelector
             sb.Append(':').Append(pseudoClass.ToWebString());
         }
 
-        if (_pseudoElement.HasValue)
+        if (_pseudoElement != null)
         {
-            sb.Append("::").Append(_pseudoElement.Value.ToWebString());
+            sb.Append("::").Append(_pseudoElement.ToString());
         }
 
         if (_next != null)

@@ -1,39 +1,29 @@
-﻿using System;
+﻿namespace LabOfKiwi.Html;
 
-namespace LabOfKiwi.Html;
-
-public enum PseudoElement
+public class PseudoElement
 {
-    After,
-    Backdrop,
-    Before,
-    Cue,
-    CueRegion,
-    FileSelectorButton,
-    FirstLetter,
-    FirstLine,
-    Marker,
-    Placeholder,
-    Selection,
-    TargetText
-}
+    public static readonly PseudoElement After              = new("after");
+    public static readonly PseudoElement Backdrop           = new("backdrop");
+    public static readonly PseudoElement Before             = new("before");
+    public static readonly PseudoElement Cue                = new("cue");
+    public static readonly PseudoElement CueRegion          = new("cue-region");
+    public static readonly PseudoElement FileSelectorButton = new("file-selector-button");
+    public static readonly PseudoElement FirstLetter        = new("first-letter");
+    public static readonly PseudoElement FirstLine          = new("first-line");
+    public static readonly PseudoElement Marker             = new("marker");
+    public static readonly PseudoElement Placeholder        = new("placeholder");
+    public static readonly PseudoElement Selection          = new("selection");
+    public static readonly PseudoElement TargetText         = new("target-text");
 
-internal static class PseudoElementExtensions
-{
-    public static string ToWebString(this PseudoElement value) => value switch
+    internal PseudoElement(string name)
     {
-        PseudoElement.After => "after",
-        PseudoElement.Backdrop => "backdrop",
-        PseudoElement.Before => "before",
-        PseudoElement.Cue => "cue",
-        PseudoElement.CueRegion => "cue-region",
-        PseudoElement.FileSelectorButton => "file-selector-button",
-        PseudoElement.FirstLetter => "first-letter",
-        PseudoElement.FirstLine => "first-line",
-        PseudoElement.Marker => "marker",
-        PseudoElement.Placeholder => "placeholder",
-        PseudoElement.Selection => "selection",
-        PseudoElement.TargetText => "target-text",
-        _ => throw new NotImplementedException(),
-    };
+        Name = name;
+    }
+
+    public string Name { get; }
+
+    public override string ToString()
+    {
+        return Name;
+    }
 }
