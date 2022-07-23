@@ -11,11 +11,6 @@ public partial class INPUT : HtmlVoidElement
     internal INPUT()
     {
         _expectedType = InputTypeUtility.GetInputType(GetType());
-
-        if (_expectedType != InputType.Unknown)
-        {
-            CoreNode.SetAttributeValue("type", _expectedType.ToWebString());
-        }
     }
 
     public string? Form
@@ -67,4 +62,12 @@ public partial class INPUT : HtmlVoidElement
     public string? Value => Get("value");
 
     internal sealed override string ExpectedTagName => "input";
+
+    internal sealed override void OnCoreNodeSet()
+    {
+        if (_expectedType != InputType.Unknown)
+        {
+            CoreNode.SetAttributeValue("type", _expectedType.ToWebString());
+        }
+    }
 }

@@ -42,6 +42,7 @@ public abstract partial class HtmlNode
             }
 
             _coreNode = value;
+            OnCoreNodeSet();
         }
     }
 
@@ -65,6 +66,10 @@ public abstract partial class HtmlNode
     public sealed override int GetHashCode()
     {
         return CoreNode.GetHashCode();
+    }
+
+    internal virtual void OnCoreNodeSet()
+    {
     }
 
     internal static HtmlNode? NullableWrapNode(object? node)
