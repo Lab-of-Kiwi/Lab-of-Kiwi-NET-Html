@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace LabOfKiwi.Html.Css;
+namespace LabOfKiwi.Html.Css.Selectors;
 
 public sealed class SelectorList : Selector, IReadOnlyList<Selector>
 {

@@ -1,4 +1,4 @@
-﻿namespace LabOfKiwi.Html.Css;
+﻿namespace LabOfKiwi.Html.Css.Selectors;
 
 public enum Combinator : byte
 {

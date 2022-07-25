@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace LabOfKiwi.Html.Css;
+namespace LabOfKiwi.Html.Css.Selectors;
 
 public sealed class ComplexSelector : SubSelectorList, IEnumerable<(SubComplexSelector Left, Combinator Combinator, SubComplexSelector Right)>
 {

@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
-namespace LabOfKiwi.Html.Css;
+namespace LabOfKiwi.Html.Css.Selectors;
 
 public sealed class CompoundSelector : SubComplexSelector, IReadOnlyCollection<SimpleSelector>
 {

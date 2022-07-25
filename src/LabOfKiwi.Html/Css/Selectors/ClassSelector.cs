@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace LabOfKiwi.Html.Css;
+namespace LabOfKiwi.Html.Css.Selectors;
 
-public sealed class TypeSelector : SimpleSelector
+public sealed class ClassSelector : SimpleSelector
 {
     private readonly string _value;
 
-    private TypeSelector(string value)
+    private ClassSelector(string value)
     {
         _value = value;
     }
@@ -38,7 +38,7 @@ public sealed class TypeSelector : SimpleSelector
             throw new ArgumentNullException(nameof(selector));
         }
 
-        return new CompoundSelector(this, selector);
+        return new CompoundSelector(selector, this);
     }
 
     public override CompoundSelector Add(PseudoClass selector)
@@ -61,14 +61,39 @@ public sealed class TypeSelector : SimpleSelector
         return new CompoundSelector(this, selector);
     }
 
-    public static TypeSelector OfType<TElement>() where TElement : HtmlElement, new()
+    public CompoundSelector Add(TypeSelector selector)
     {
-        string value = new TElement().ExpectedTagName;
-        return new TypeSelector(value);
+        if (selector == null)
+        {
+            throw new ArgumentNullException(nameof(selector));
+        }
+
+        return new CompoundSelector(selector, this);
+    }
+
+    public CompoundSelector Add(UniversalSelector selector)
+    {
+        if (selector == null)
+        {
+            throw new ArgumentNullException(nameof(selector));
+        }
+
+        return new CompoundSelector(selector, this);
+    }
+
+    public static ClassSelector Create(string className)
+    {
+        if (className == null)
+        {
+            throw new ArgumentNullException(nameof(className));
+        }
+
+        // TODO validate className
+        return new ClassSelector(className);
     }
 
     public override string ToString()
     {
-        return _value;
+        return $".{_value}";
     }
 }

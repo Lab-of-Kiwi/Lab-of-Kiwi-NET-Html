@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LabOfKiwi.Html.Css;
+namespace LabOfKiwi.Html.Css.Selectors;
 
 public abstract class SimpleSelector : SubComplexSelector
 {

@@ -5,7 +5,7 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 
-namespace LabOfKiwi.Html.Css;
+namespace LabOfKiwi.Html.Css.Selectors;
 
 public class PseudoClass : SimpleSelector
 {
