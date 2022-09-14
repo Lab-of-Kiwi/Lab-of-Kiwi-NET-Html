@@ -284,7 +284,7 @@ public sealed class CompoundSelector : SubComplexSelector, IReadOnlyCollection<S
 
         if (Array.IndexOf(_attributeSelectors, selector) == -1)
         {
-            var newAttributeSelectors = _attributeSelectors.Add(selector);
+            var newAttributeSelectors = _attributeSelectors.Append(selector);
             return new CompoundSelector(_typeSelector, _idSelector, _classSelectors, newAttributeSelectors, _pseudoClasses, _pseudoElement);
         }
 
@@ -300,7 +300,7 @@ public sealed class CompoundSelector : SubComplexSelector, IReadOnlyCollection<S
 
         if (Array.IndexOf(_classSelectors, selector) == -1)
         {
-            var newClassSelectors = _classSelectors.Add(selector);
+            var newClassSelectors = _classSelectors.Append(selector);
             return new CompoundSelector(_typeSelector, _idSelector, newClassSelectors, _attributeSelectors, _pseudoClasses, _pseudoElement);
         }
 
@@ -316,7 +316,7 @@ public sealed class CompoundSelector : SubComplexSelector, IReadOnlyCollection<S
 
         if (Array.IndexOf(_pseudoClasses, selector) == -1)
         {
-            var newPseudoClasses = _pseudoClasses.Add(selector);
+            var newPseudoClasses = _pseudoClasses.Append(selector);
             return new CompoundSelector(_typeSelector, _idSelector, _classSelectors, _attributeSelectors, newPseudoClasses, _pseudoElement);
         }
 

@@ -84,7 +84,7 @@ public sealed class ComplexSelector : SubSelectorList, IEnumerable<(SubComplexSe
             throw new ArgumentNullException(nameof(selector));
         }
 
-        CombinatorRecord[] combinatorRecords = _combinatorRecords.Add(new CombinatorRecord(combinator, selector));
+        CombinatorRecord[] combinatorRecords = _combinatorRecords.Append(new CombinatorRecord(combinator, selector));
         return new ComplexSelector(_rootSelector, combinatorRecords);
     }
 

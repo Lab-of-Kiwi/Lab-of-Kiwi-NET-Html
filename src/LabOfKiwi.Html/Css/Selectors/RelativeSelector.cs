@@ -199,7 +199,7 @@ public abstract class RelativeSelector
                     return this;
                 }
 
-                return new RelativeSelectorList(_selectors.Add(single));
+                return new RelativeSelectorList(_selectors.Append(single));
             }
 
             if (selector is RelativeSelectorList list)

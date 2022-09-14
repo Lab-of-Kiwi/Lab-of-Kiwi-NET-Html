@@ -35,7 +35,7 @@ public sealed class SelectorList : Selector, IReadOnlyList<Selector>
             throw new ArgumentNullException(nameof(selector));
         }
 
-        var selectors = _selectors.Add(selector);
+        var selectors = _selectors.Append(selector);
         return new SelectorList(selectors);
     }
 
